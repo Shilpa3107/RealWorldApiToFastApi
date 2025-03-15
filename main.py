@@ -3,13 +3,20 @@ from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 from models import Base
 from schemas import UserCreate, UserResponse
-from crud import create_user, get_users, update_user, delete_user   # ✅ Fixed import
+from crud import create_user, get_users, update_user, delete_user   
 
 app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"message": "API is running"}
+    return {
+        "message": "API is running",
+        "status": "healthy",
+        "version": "1.0.0",
+        "docs": "/docs",              # FastAPI auto-generated Swagger docs
+        "redoc": "/redoc"             # Alternative documentation format
+    }
+
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -40,7 +47,6 @@ def create_new_user(user: UserCreate, db: Session = Depends(get_db)):
 def read_users(db: Session = Depends(get_db)):
     return get_users(db=db)
 
-# ✅ Fixed - Added @app.put decorator
 @app.put("/users/{user_id}", response_model=UserResponse)
 def update_existing_user(user_id: int, user: UserCreate, db: Session = Depends(get_db)):
     db_user = update_user(db=db, user_id=user_id, user=user)

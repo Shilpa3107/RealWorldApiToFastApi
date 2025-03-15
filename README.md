@@ -43,8 +43,8 @@ This project is a FastAPI-based REST API that allows you to perform CRUD (Create
 
 ### 1. **Clone the repository**:
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/your-username/your-repo.git](https://github.com/Shilpa3107/RealWorldApiToFastApi.git
+cd RealWorldApiToFastApi
 ```
 ### 2. Create and activate a virtual environment:
 
